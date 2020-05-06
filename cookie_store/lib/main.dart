@@ -1,3 +1,4 @@
+import 'package:cookie_store/screen/cookie_screen.dart';
 import 'package:cookie_store/widget/bottom_bar.dart';
 import 'package:flutter/material.dart';
 
@@ -66,28 +67,41 @@ class _HomeScreenState extends State<HomeScreen>
           ),
           SizedBox(height: 15.0),
           TabBar(
+            controller: _tabController,
+            labelColor: Color(0xFFC88D67),
+            labelPadding: EdgeInsets.only(right: 45.0),
+            indicatorColor: Colors.transparent,
+            unselectedLabelColor: Color(0xFFCDCDCD),
+            isScrollable: true,
+            tabs: [
+              Tab(
+                child: Text(
+                  'Cookies',
+                  style: TextStyle(fontFamily: 'Varela', fontSize: 21.0),
+                ),
+              ),
+              Tab(
+                child: Text('Cookie Cake',
+                    style: TextStyle(fontFamily: 'Varela', fontSize: 21.0)),
+              ),
+              Tab(
+                child: Text('Ice Cream',
+                    style: TextStyle(fontFamily: 'Varela', fontSize: 21.0)),
+              )
+            ],
+          ),
+          Container(
+            height: MediaQuery.of(context).size.height - 50.0,
+            width: double.infinity,
+            child: TabBarView(
               controller: _tabController,
-              labelColor: Color(0xFFC88D67),
-              labelPadding: EdgeInsets.only(right: 45.0),
-              indicatorColor: Colors.transparent,
-              unselectedLabelColor: Color(0xFFCDCDCD),
-              isScrollable: true,
-              tabs: [
-                Tab(
-                  child: Text(
-                    'Cookies',
-                    style: TextStyle(fontFamily: 'Varela', fontSize: 21.0),
-                  ),
-                ),
-                Tab(
-                  child: Text('Cookie Cake',
-                      style: TextStyle(fontFamily: 'Varela', fontSize: 21.0)),
-                ),
-                Tab(
-                  child: Text('Ice Cream',
-                      style: TextStyle(fontFamily: 'Varela', fontSize: 21.0)),
-                )
-              ]),
+              children: [
+                CookieScreen(),
+                CookieScreen(),
+                CookieScreen(),
+              ],
+            ),
+          )
         ],
       ),
       floatingActionButton: FloatingActionButton(

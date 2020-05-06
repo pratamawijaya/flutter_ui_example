@@ -91,7 +91,7 @@ class _HomeScreenState extends State<HomeScreen>
         ],
       ),
       floatingActionButton: FloatingActionButton(
-        backgroundColor: Color(0xFF17532),
+        backgroundColor: Color(0xFFEF7532),
         child: Icon(Icons.fastfood),
         onPressed: () {},
       ),

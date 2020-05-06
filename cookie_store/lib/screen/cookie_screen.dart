@@ -1,3 +1,4 @@
+import 'package:cookie_store/screen/cookie_detail_screen.dart';
 import 'package:flutter/material.dart';
 
 class CookieScreen extends StatelessWidget {
@@ -21,9 +22,12 @@ class CookieScreen extends StatelessWidget {
               children: <Widget>[
                 _buildCard("Cookie Mint", "assets/images/cookie_1.jpg", false,
                     "15.000", context),
-                _buildCard("Cookie Cream", "", true, "15.000", context),
-                _buildCard("Cookie Choco", "", false, "15.000", context),
-                _buildCard("Cookie Choco", "", false, "15.000", context),
+                _buildCard("Cookie Cream", "assets/images/cookie_2.jpg", true,
+                    "15.000", context),
+                _buildCard("Cookie Choco", "assets/images/cookie_3.jpg", false,
+                    "15.000", context),
+                _buildCard("Cookie Choco", "assets/images/cookie_1.jpg", false,
+                    "15.000", context),
               ],
             ),
           )
@@ -38,7 +42,14 @@ Widget _buildCard(
   return Padding(
     padding: EdgeInsets.only(top: 15.0, bottom: 5.0, left: 5.0, right: 5.0),
     child: InkWell(
-      onTap: () {},
+      onTap: () {
+        Navigator.of(context).push(MaterialPageRoute(
+            builder: (context) => CookieDetailScreen(
+                  assetPath: imgPath,
+                  cookieName: name,
+                  cookiePrice: price,
+                )));
+      },
       child: Container(
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(15.0),

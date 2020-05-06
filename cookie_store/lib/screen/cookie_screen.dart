@@ -19,10 +19,11 @@ class CookieScreen extends StatelessWidget {
               mainAxisSpacing: 15.0,
               childAspectRatio: 0.8,
               children: <Widget>[
-                _buildCard("Cookie Mint", "", context),
-                _buildCard("Cookie Cream", "", context),
-                _buildCard("Cookie Choco", "", context),
-                _buildCard("Cookie Choco", "", context),
+                _buildCard("Cookie Mint", "assets/images/cookie_1.jpg", false,
+                    "15.000", context),
+                _buildCard("Cookie Cream", "", true, "15.000", context),
+                _buildCard("Cookie Choco", "", false, "15.000", context),
+                _buildCard("Cookie Choco", "", false, "15.000", context),
               ],
             ),
           )
@@ -32,7 +33,8 @@ class CookieScreen extends StatelessWidget {
   }
 }
 
-Widget _buildCard(String name, String imgPath, context) {
+Widget _buildCard(
+    String name, String imgPath, bool isFavorite, String price, context) {
   return Padding(
     padding: EdgeInsets.only(top: 15.0, bottom: 5.0, left: 5.0, right: 5.0),
     child: InkWell(
@@ -48,6 +50,52 @@ Widget _buildCard(String name, String imgPath, context) {
               )
             ],
             color: Colors.white),
+        child: Column(
+          children: <Widget>[
+            Padding(
+              padding: EdgeInsets.all(5.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: <Widget>[
+                  isFavorite
+                      ? Icon(Icons.favorite, color: Color(0xFFEF7532))
+                      : Icon(
+                          Icons.favorite_border,
+                          color: Color(0xFFEF7532),
+                        )
+                ],
+              ),
+            ),
+            Hero(
+              tag: imgPath,
+              child: Container(
+                height: 75.0,
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage(imgPath),
+                  ),
+                ),
+              ),
+            ),
+            SizedBox(
+              height: 7.0,
+            ),
+            Text(
+              price,
+              style: TextStyle(
+                  color: Color(0xFFCC8053),
+                  fontFamily: 'Varela',
+                  fontSize: 14.0),
+            ),
+            Text(
+              name,
+              style: TextStyle(
+                  color: Color(0xFF575E67),
+                  fontFamily: 'Varela',
+                  fontSize: 14.0),
+            ),
+          ],
+        ),
       ),
     ),
   );

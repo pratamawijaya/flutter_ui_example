@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:meditation_app/constants.dart';
+import 'package:meditation_app/screens/detail_screen.dart';
 import 'package:meditation_app/widget/bottom_nav_bar.dart';
 import 'package:meditation_app/widget/bottom_nav_item.dart';
 import 'package:meditation_app/widget/category_card.dart';
@@ -69,20 +70,7 @@ class HomeScreen extends StatelessWidget {
                         .display1
                         .copyWith(fontWeight: FontWeight.w900),
                   ),
-                  Container(
-                    margin: EdgeInsets.symmetric(vertical: 30),
-                    padding: EdgeInsets.symmetric(horizontal: 30, vertical: 5),
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(30.0),
-                    ),
-                    child: TextField(
-                      decoration: InputDecoration(
-                          hintText: "Search",
-                          icon: SvgPicture.asset("assets/icons/search.svg"),
-                          border: InputBorder.none),
-                    ),
-                  ),
+                  SearchBar(),
                   Expanded(
                     child: GridView.count(
                       crossAxisCount: 2,
@@ -93,18 +81,32 @@ class HomeScreen extends StatelessWidget {
                         CategoryCard(
                           title: "Diet Recommendation",
                           imgSrc: "assets/icons/Hamburger.svg",
+                          press: () {
+                            Navigator.push(context,
+                                MaterialPageRoute(builder: (context) {
+                              return DetailScreen();
+                            }));
+                          },
                         ),
                         CategoryCard(
                           title: "Kegel Recommendation",
                           imgSrc: "assets/icons/Excrecises.svg",
+                          press: () {},
                         ),
                         CategoryCard(
-                          title: "Meditation ",
+                          title: "Meditation",
                           imgSrc: "assets/icons/Meditation.svg",
+                          press: () {
+                            Navigator.push(context,
+                                MaterialPageRoute(builder: (context) {
+                              return DetailScreen();
+                            }));
+                          },
                         ),
                         CategoryCard(
                           title: "Yoga",
                           imgSrc: "assets/icons/yoga.svg",
+                          press: () {},
                         ),
                       ],
                     ),

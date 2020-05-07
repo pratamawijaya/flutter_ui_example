@@ -21,7 +21,7 @@ class BottomNavBar extends StatelessWidget {
             press: () {},
           ),
           BottomNavItem(
-            title: "Gym",
+            title: "All Excercises",
             imgSrc: "assets/icons/gym.svg",
             isActive: true,
             press: () {},

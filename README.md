@@ -1,4 +1,4 @@
 # Flutter UI Sample
 
 ## Meditation App
-![Meditation App](images/meditation_app.png)
+<img src="images/meditation_app.png" alt="drawing" width="200"/>

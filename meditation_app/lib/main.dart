@@ -86,12 +86,22 @@ class HomeScreen extends StatelessWidget {
                       crossAxisSpacing: 20,
                       childAspectRatio: .85,
                       children: <Widget>[
-                        CategoryCard(),
-                        CategoryCard(),
-                        CategoryCard(),
-                        CategoryCard(),
-                        CategoryCard(),
-                        CategoryCard(),
+                        CategoryCard(
+                          title: "Diet Recommendation",
+                          imgSrc: "assets/icons/Hamburger.svg",
+                        ),
+                        CategoryCard(
+                          title: "Kegel Recommendation",
+                          imgSrc: "assets/icons/Excrecises.svg",
+                        ),
+                        CategoryCard(
+                          title: "Meditation ",
+                          imgSrc: "assets/icons/Meditation.svg",
+                        ),
+                        CategoryCard(
+                          title: "Yoga",
+                          imgSrc: "assets/icons/yoga.svg",
+                        ),
                       ],
                     ),
                   ),
@@ -106,29 +116,54 @@ class HomeScreen extends StatelessWidget {
 }
 
 class CategoryCard extends StatelessWidget {
+  final String imgSrc;
+  final String title;
+
   const CategoryCard({
     Key key,
+    this.imgSrc,
+    this.title,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.all(20.0),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(12),
-      ),
-      child: Column(
-        children: <Widget>[
-          Spacer(),
-          SvgPicture.asset("assets/icons/Hamburger.svg"),
-          Spacer(),
-          Text(
-            "Diet Reccomendation",
-            textAlign: TextAlign.center,
-            style: Theme.of(context).textTheme.title.copyWith(fontSize: 15),
-          )
-        ],
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(12),
+      child: Container(
+        decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(12),
+            boxShadow: [
+              BoxShadow(
+                  offset: Offset(0, 17),
+                  blurRadius: 17,
+                  spreadRadius: -23,
+                  color: kShadowColor)
+            ]),
+        child: Material(
+          color: Colors.transparent,
+          child: InkWell(
+            onTap: () {},
+            child: Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: Column(
+                children: <Widget>[
+                  Spacer(),
+                  SvgPicture.asset(imgSrc),
+                  Spacer(),
+                  Text(
+                    title,
+                    textAlign: TextAlign.center,
+                    style: Theme.of(context)
+                        .textTheme
+                        .title
+                        .copyWith(fontSize: 15),
+                  )
+                ],
+              ),
+            ),
+          ),
+        ),
       ),
     );
   }

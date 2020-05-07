@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:meditation_app/constants.dart';
+import 'package:meditation_app/widget/bottom_nav_bar.dart';
+import 'package:meditation_app/widget/bottom_nav_item.dart';
 import 'package:meditation_app/widget/category_card.dart';
 
 void main() => runApp(MyApp());
@@ -27,6 +29,7 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
     return Scaffold(
+      bottomNavigationBar: BottomNavBar(),
       body: Stack(
         children: <Widget>[
           Container(

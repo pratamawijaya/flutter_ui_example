@@ -16,11 +16,19 @@ class SearchBar extends StatelessWidget {
         borderRadius: BorderRadius.circular(30.0),
       ),
       child: TextField(
+        focusNode: FirstDisabledFocusNode(),
         decoration: InputDecoration(
             hintText: "Search",
             icon: SvgPicture.asset("assets/icons/search.svg"),
             border: InputBorder.none),
       ),
     );
+  }
+}
+
+class FirstDisabledFocusNode extends FocusNode {
+  @override
+  bool consumeKeyboardToken() {
+    return false;
   }
 }

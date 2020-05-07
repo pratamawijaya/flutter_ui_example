@@ -3,8 +3,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:meditation_app/constants.dart';
 import 'package:meditation_app/screens/detail_screen.dart';
 import 'package:meditation_app/widget/bottom_nav_bar.dart';
-import 'package:meditation_app/widget/bottom_nav_item.dart';
 import 'package:meditation_app/widget/category_card.dart';
+import 'package:meditation_app/widget/search_bar.dart';
 
 void main() => runApp(MyApp());
 

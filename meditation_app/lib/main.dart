@@ -43,6 +43,7 @@ class HomeScreen extends StatelessWidget {
               padding:
                   const EdgeInsets.symmetric(horizontal: 20.0, vertical: 20.0),
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Align(
                     alignment: Alignment.topRight,
@@ -56,11 +57,77 @@ class HomeScreen extends StatelessWidget {
                       ),
                       child: SvgPicture.asset("assets/icons/menu.svg"),
                     ),
-                  )
+                  ),
+                  Text(
+                    "Good Morning \nUser",
+                    style: Theme.of(context)
+                        .textTheme
+                        .display1
+                        .copyWith(fontWeight: FontWeight.w900),
+                  ),
+                  Container(
+                    margin: EdgeInsets.symmetric(vertical: 30),
+                    padding: EdgeInsets.symmetric(horizontal: 30, vertical: 5),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(30.0),
+                    ),
+                    child: TextField(
+                      decoration: InputDecoration(
+                          hintText: "Search",
+                          icon: SvgPicture.asset("assets/icons/search.svg"),
+                          border: InputBorder.none),
+                    ),
+                  ),
+                  Expanded(
+                    child: GridView.count(
+                      crossAxisCount: 2,
+                      mainAxisSpacing: 20,
+                      crossAxisSpacing: 20,
+                      childAspectRatio: .85,
+                      children: <Widget>[
+                        CategoryCard(),
+                        CategoryCard(),
+                        CategoryCard(),
+                        CategoryCard(),
+                        CategoryCard(),
+                        CategoryCard(),
+                      ],
+                    ),
+                  ),
                 ],
               ),
             ),
           ),
+        ],
+      ),
+    );
+  }
+}
+
+class CategoryCard extends StatelessWidget {
+  const CategoryCard({
+    Key key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: EdgeInsets.all(20.0),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(12),
+      ),
+      child: Column(
+        children: <Widget>[
+          Spacer(),
+          SvgPicture.asset("assets/icons/Hamburger.svg"),
+          Spacer(),
+          Text(
+            "Diet Reccomendation",
+            textAlign: TextAlign.center,
+            style: Theme.of(context).textTheme.title.copyWith(fontSize: 15),
+          )
         ],
       ),
     );

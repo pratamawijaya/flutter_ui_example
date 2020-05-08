@@ -4,6 +4,7 @@ import 'package:ps5_product/constants.dart';
 import 'package:ps5_product/model/controller.dart';
 import 'package:ps5_product/widget/appbar.dart';
 import 'package:ps5_product/widget/item_widget.dart';
+import 'package:ps5_product/widget/mybottombar.dart';
 import 'package:ps5_product/widget/setting_opt.dart';
 import 'package:ps5_product/widget/title.dart';
 
@@ -60,7 +61,14 @@ class HomeScreen extends StatelessWidget {
                   items: controllers,
                   screenHeight: size.height,
                   screenWidth: size.width,
-                )
+                ),
+                Spacer(),
+                MyBottomBar(
+                  selectedIndex: 1,
+                ),
+                SizedBox(
+                  height: 20,
+                ),
               ],
             ),
           ),

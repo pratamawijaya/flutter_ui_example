@@ -7,3 +7,6 @@
 
 ## Cookie Store
 <img src="images/cookie_store.png" alt="drawing" width="200"/>
+
+## PS 5 Store
+<img src="images/ps5_product.png" alt="drawing" width="200"/>

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:ps5_product/constants.dart';
 import 'package:ps5_product/model/controller.dart';
 import 'package:ps5_product/widget/item_background_clipper.dart';
-import 'package:ps5_product/widget/item_card_shape.dart';
 
 class ItemWidget extends StatelessWidget {
   final List<Item> items;
@@ -16,6 +16,7 @@ class ItemWidget extends StatelessWidget {
       height: screenHeight * 0.43,
       child: PageView.builder(
           itemCount: items.length,
+          pageSnapping: true,
           controller: PageController(viewportFraction: 0.7),
           itemBuilder: (context, index) {
             return Padding(
@@ -31,7 +32,7 @@ class ItemWidget extends StatelessWidget {
                         child: Container(
                           width: screenWidth * 0.64,
                           height: screenHeight * 0.48,
-                          decoration: BoxDecoration(color: Colors.white),
+                          decoration: BoxDecoration(color: kWhiteSliver),
                         ),
                       ),
                     ),
@@ -43,6 +44,35 @@ class ItemWidget extends StatelessWidget {
                       child: Image.asset(
                         (items[index] as Controller).imagePath,
                       ),
+                    ),
+                  ),
+                  Positioned(
+                    bottom: 20,
+                    left: 32,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Text(
+                          (items[index] as Controller).title,
+                          style: TextStyle(
+                              fontSize: 20, fontWeight: FontWeight.w800),
+                        ),
+                        Text(
+                          (items[index] as Controller).description,
+                          style: TextStyle(
+                              fontSize: 16, fontWeight: FontWeight.w600),
+                        )
+                      ],
+                    ),
+                  ),
+                  Positioned(
+                    right: 20,
+                    top: 20,
+                    child: Image.asset(
+                      "assets/images/ps_logo.png",
+                      width: 40.0,
+                      height: 40.0,
+                      color: Colors.black.withOpacity(0.4),
                     ),
                   ),
                 ],

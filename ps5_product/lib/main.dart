@@ -1,8 +1,11 @@
-import 'package:clay_containers/constants.dart';
-import 'package:clay_containers/widgets/clay_containers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:ps5_product/constants.dart';
+import 'package:ps5_product/model/controller.dart';
+import 'package:ps5_product/widget/appbar.dart';
+import 'package:ps5_product/widget/item_widget.dart';
+import 'package:ps5_product/widget/setting_opt.dart';
+import 'package:ps5_product/widget/title.dart';
 
 void main() => runApp(MyApp());
 
@@ -31,7 +34,7 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       body: Stack(
         children: <Widget>[
-          _BackgroundRight(width: size.width * 0.4, height: size.height * 0.8),
+          _BackgroundRight(width: size.width * 0.4, height: size.height * 0.87),
           SafeArea(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -39,100 +42,26 @@ class HomeScreen extends StatelessWidget {
                 SizedBox(
                   height: 15,
                 ),
-                _AppBar(),
+                MyAppBar(),
                 SizedBox(
-                  height: 30,
+                  height: 15,
                 ),
-                _Title(
+                TitleBar(
                   text: "Featured Product",
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                SettingAndOpt(),
+                SizedBox(
+                  height: 20,
+                ),
+                ItemWidget(
+                  items: controllers,
+                  screenHeight: size.height,
+                  screenWidth: size.width,
                 )
               ],
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class _Title extends StatelessWidget {
-  final String text;
-
-  const _Title({Key key, this.text}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    final words = text.split(' ');
-
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20),
-      child: RichText(
-        text: TextSpan(children: [
-          TextSpan(
-            text: words[0],
-            style: TextStyle(
-              fontWeight: FontWeight.w900,
-              fontSize: 36,
-              color: Colors.black,
-            ),
-          ),
-          TextSpan(text: "\n"),
-          TextSpan(
-              text: words[1],
-              style: TextStyle(
-                fontWeight: FontWeight.w900,
-                fontSize: 36,
-                color: Colors.black,
-              )),
-        ]),
-      ),
-    );
-  }
-}
-
-class _AppBar extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 16),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: <Widget>[
-          ClayContainer(
-            width: 50,
-            height: 50,
-            depth: 20,
-            borderRadius: 25,
-            curveType: CurveType.concave,
-            child: Container(
-              decoration: BoxDecoration(
-                border: Border.all(color: kGreyColor, width: 2),
-                borderRadius: BorderRadius.circular(25),
-              ),
-              child: Icon(
-                Icons.menu,
-                color: kGreyColor2,
-                size: 25,
-              ),
-            ),
-          ),
-          ClayContainer(
-            width: 50,
-            height: 50,
-            depth: 20,
-            borderRadius: 25,
-            parentColor: kBlueColor,
-            curveType: CurveType.concave,
-            child: Container(
-              decoration: BoxDecoration(
-                border: Border.all(color: kGreyColor, width: 2),
-                borderRadius: BorderRadius.circular(25),
-              ),
-              child: Icon(
-                Icons.shopping_cart,
-                color: kGreyColor2,
-                size: 25,
-              ),
             ),
           ),
         ],

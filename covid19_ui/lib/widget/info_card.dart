@@ -1,5 +1,5 @@
 import 'package:covid19_ui/constants.dart';
-import 'package:covid19_ui/screens/widget/line_chart.dart';
+import 'package:covid19_ui/widget/line_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 

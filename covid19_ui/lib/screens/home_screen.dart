@@ -1,4 +1,6 @@
 import 'package:covid19_ui/constants.dart';
+import 'package:covid19_ui/screens/detail_screen.dart';
+import 'package:covid19_ui/transition/slide_route.dart';
 import 'package:covid19_ui/widget/info_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -30,24 +32,68 @@ class HomeScreen extends StatelessWidget {
                   number: "1000",
                   iconAsset: "assets/icons/running.svg",
                   iconColor: Color(0xFFFF9C00),
+                  press: () {
+                    Navigator.push(
+                      context,
+                      SlideLeftRoute(
+                        page: DetailScreen(
+                          title: "Confirmed Cases",
+                          number: "1000",
+                        ),
+                      ),
+                    );
+                  },
                 ),
                 InfoCard(
                   title: "Total Deaths",
                   number: "758",
                   iconAsset: "assets/icons/running.svg",
                   iconColor: Color(0xFFFF2D55),
+                  press: () {
+                    Navigator.push(
+                      context,
+                      SlideLeftRoute(
+                        page: DetailScreen(
+                          title: "Total Death",
+                          number: "758",
+                        ),
+                      ),
+                    );
+                  },
                 ),
                 InfoCard(
                   title: "Total Recovered",
                   number: "348",
                   iconAsset: "assets/icons/running.svg",
                   iconColor: Color(0xFF50E3C2),
+                  press: () {
+                    Navigator.push(
+                      context,
+                      SlideLeftRoute(
+                        page: DetailScreen(
+                          title: "Total Recovered",
+                          number: "348",
+                        ),
+                      ),
+                    );
+                  },
                 ),
                 InfoCard(
                   title: "New Cases",
                   number: "52",
                   iconAsset: "assets/icons/running.svg",
                   iconColor: Color(0xFF5856D6),
+                  press: () {
+                    Navigator.push(
+                      context,
+                      SlideLeftRoute(
+                        page: DetailScreen(
+                          title: "New Cases",
+                          number: "52",
+                        ),
+                      ),
+                    );
+                  },
                 ),
               ],
             ),

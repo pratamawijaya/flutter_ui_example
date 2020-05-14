@@ -13,3 +13,6 @@
 
 ## Covid 19 UI
 <img src="images/covid19_app_1.png" alt="drawing" width="200"/>
+
+## Music Player
+<img src="images/music_player_1.png" alt="drawing" width="200"/>

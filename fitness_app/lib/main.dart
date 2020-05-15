@@ -1,3 +1,5 @@
+import 'package:fitness_app/constants.dart';
+import 'package:fitness_app/models/tabicon_data.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -9,109 +11,197 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Fitness App',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
-        primarySwatch: Colors.blue,
-        // This makes the visual density adapt to the platform that you run
-        // the app on. For desktop platforms, the controls will be smaller and
-        // closer together (more dense) than on mobile platforms.
+        backgroundColor: kBackground,
+        textTheme: KTextTheme,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      home: HomeScreen(),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
-
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
-
-  final String title;
-
+class HomeScreen extends StatefulWidget {
   @override
-  _MyHomePageState createState() => _MyHomePageState();
+  _HomeScreenState createState() => _HomeScreenState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
+class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
+  AnimationController animationController;
+  List<TabIconData> tabIconsList = TabIconData.tabIconsList;
 
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
+  Widget tabBody = Container(
+    color: kBackground,
+  );
+
+  @override
+  void initState() {
+    tabIconsList.forEach((TabIconData tab) {
+      tab.isSelected = false;
     });
+
+    tabIconsList[0].isSelected = true;
+
+    animationController =
+        AnimationController(vsync: this, duration: Duration(milliseconds: 600));
+
+    super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
+    final size = MediaQuery.of(context).size;
     return Scaffold(
-      appBar: AppBar(
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+          child: Column(
+            children: <Widget>[
+              _buildAppBar(),
+            ],
+          ),
+        ),
       ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Invoke "debug painting" (press "p" in the console, choose the
-          // "Toggle Debug Paint" action from the Flutter Inspector in Android
-          // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
-          // to see the wireframe for each widget.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              'You have pushed the button this many times:',
+      floatingActionButton: MyFloatingActionButton(),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      bottomNavigationBar: MyBottomBar(),
+    );
+  }
+
+  Container _buildAppBar() {
+    return Container(
+      height: 48,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: <Widget>[
+          Text(
+            "My Diary",
+            style: display1,
+          ),
+          Row(
+            children: <Widget>[
+              Icon(Icons.keyboard_arrow_left),
+              SizedBox(
+                width: 10,
+              ),
+              Row(
+                children: <Widget>[
+                  Icon(Icons.calendar_today),
+                  SizedBox(
+                    width: 10,
+                  ),
+                  Text("15 Nov"),
+                ],
+              ),
+              SizedBox(
+                width: 10,
+              ),
+              Icon(Icons.keyboard_arrow_right),
+            ],
+          )
+        ],
+      ),
+    );
+  }
+}
+
+class MyFloatingActionButton extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 54,
+      height: 54,
+      decoration: BoxDecoration(
+          color: kNearlyDarkBlue,
+          gradient: LinearGradient(
+            colors: [
+              kNearlyDarkBlue,
+              kNearlyBlue,
+            ],
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+          ),
+          shape: BoxShape.circle,
+          boxShadow: <BoxShadow>[
+            BoxShadow(
+              color: kNearlyDarkBlue.withOpacity(0.2),
+              offset: Offset(8.0, 16.0),
+              blurRadius: 22.0,
             ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
+          ]),
+      child: Material(
+        color: Colors.transparent,
+        child: InkWell(
+          splashColor: Colors.white.withOpacity(0.1),
+          highlightColor: Colors.transparent,
+          focusColor: Colors.transparent,
+          onTap: () {},
+          child: Icon(
+            Icons.add,
+            color: kWhite,
+            size: 32,
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class MyBottomBar extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+
+    return BottomAppBar(
+      shape: CircularNotchedRectangle(),
+      notchMargin: 6.0,
+      color: Colors.transparent,
+      elevation: 8.0,
+      clipBehavior: Clip.antiAlias,
+      child: Container(
+        height: 50,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(16),
+            topRight: Radius.circular(16),
+          ),
+          color: Colors.white,
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: <Widget>[
+            Container(
+              height: 50,
+              width: size.width / 2 - 40,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: <Widget>[
+                  Image.asset("assets/images/tab_1.png"),
+                  Image.asset("assets/images/tab_2.png"),
+                ],
+              ),
+            ),
+            Container(
+              height: 50,
+              width: size.width / 2 - 40,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: <Widget>[
+                  Image.asset("assets/images/tab_3.png"),
+                  Image.asset("assets/images/tab_4.png"),
+                ],
+              ),
             ),
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
+}
+
+Future<bool> getData() async {
+  await Future<dynamic>.delayed(const Duration(milliseconds: 200));
+  return true;
 }
